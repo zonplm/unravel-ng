@@ -1,20 +1,20 @@
-﻿angular.module('main', ['ngRoute', 'core', 'maintenance'])
+angular.module('main', ['ngRoute', 'core', 'maintenance'])
   .controller('adminCtrl', AdminCtrl)
   .controller('mainCtrl', MainCtrl)
   .config(function ($routeProvider) {
     $routeProvider.when('/locations', {
-      templateUrl: '/views/locations.html'
+      templateUrl: './views/locations.html'
     });
     $routeProvider.when('/sites', {
-      templateUrl: '/views/sites.html',
+      templateUrl: './views/sites.html',
       controller: 'sitesCtrl'
     });
     $routeProvider.when('/types', {
-      templateUrl: '/views/types.html',
+      templateUrl: './views/types.html',
       controller: 'typesCtrl'
     });
     $routeProvider.otherwise({
-      templateUrl: '/views/main.html',
+      templateUrl: './views/main.html',
       controller: 'mainCtrl'
     });
   });
