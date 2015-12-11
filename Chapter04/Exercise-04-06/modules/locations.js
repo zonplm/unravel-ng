@@ -1,4 +1,4 @@
-﻿angular.module('maintenance')
+﻿angular.module('maintenance', ['config'])
   .factory('locationsApi', locationsApi)
   .controller('locationsCtrl', LocationsCtrl)
   .constant('apiUrl',
@@ -8,8 +8,7 @@
   .constant('userSecret',
     '2f6fc40098b84928bd87f209deb3a1d530343977b84d4fa5969007c16ff719fec6da30b9b9454977b29f97a91b746844');
 
-function locationsApi($http, apiUrl,
-  userId, userSecret) {
+function locationsApi($http, unravelConfig) {
 
   function get(param) {
     return request("GET", param);
@@ -43,12 +42,12 @@ function locationsApi($http, apiUrl,
     if (param == null || !angular.isDefined(param)) {
       param = '';
     }
-    return apiUrl + param;
+    return unravelConfig.apiUrl + param;
   }
 
   function getAuthHeader() {
     return "TenantSecret "
-      + userId + "," + userSecret;
+      + unravelConfig.userId + "," + unravelConfig.userSecret;
   }
 
   return {
