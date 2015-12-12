@@ -44,10 +44,11 @@ function ywMenuId(currentSpot) {
     var menuId = attrs["ywMenuId"];
     menuElements.push({ id: menuId, node: element });
     setActive(element, menuId);
-    var watcherFn = function (watchScope) {
-      return watchScope.$eval('getActiveMenu()', menuId);
-    }
-    scope.$watch(watcherFn, function (newValue, oldValue) {
+    scope.getActiveMenu = currentSpot.getActiveMenu;
+    // var watcherFn = function (watchScope) {
+    //   return watchScope.$eval('getActiveMenu()', menuId);
+    // }
+    scope.$watch(scope.getActiveMenu, function (newValue, oldValue) {
       for (var i = 0; i < menuElements.length; i++) {
         var menuElement = menuElements[i];
         setActive(menuElement.node, menuElement.id);
